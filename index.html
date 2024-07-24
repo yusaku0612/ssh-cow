@@ -2,89 +2,54 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - vuetify</title>
+  <title>CodePen - A Pen by yusaku0612</title>
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
 <link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'><link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<!-- Vueで指定された"app"要素、この中でのみVueが有効 -->
-<div id="app">
-  <v-app>
-    <v-content>
-      <v-container>
-        <v-row
-          class="text-h3 mb-3 mt-3"
-          justify="center"
-          >
-          My ToDo App
-        </v-row>
-        <v-row
-          class="mb-3 mt-3"
-          align="center"
-          justify="center"
-          >
-          <v-col 
-            cols="12"
-          sm="6"
-          md="3"           
-            >
-            <v-text-field
-                  class="ml-6 mr-6"
-                  v-model:value="task"              
-            placeholder="Placeholder"
-            solo
-            
-                  label="タスクを入力"
-                  placeholder="タスクを入力…"
-                  outlined
-            >
+<body>
+  <div id="app">
+    <v-app>
+      <section class="carousel">
+        <br>
+        <div class="carousel__main">
+          <transition name="active">
+            <div class="carousel__main-image"
+                :key="images[active].id" 
+                v-show="active === images[active].id">
+              <img :src="images[active].img">
+            </div>
+          </transition>
+        </div>
+        <div @click="prev" class="carousel__prev"><i class="fas fa-angle-left fa-5x"></i></div>
+        <div @click="next" class="carousel__next"><i class="fas fa-angle-right fa-5x"></i></div>
+        <ul class="carousel__thumbnails">
+          <li v-for="(image, id) in images"
+            :key="image.id"
+            :class="{current: active === image.id}"
+            @click="current(image.id)">
+          <img :src="image.img">
+          </li>
+        </ul>
+        <v-row class="justify-center mt-3">
+          <v-col cols="auto">
+            <v-btn color="secondary" elevation="1" fab icon outlined large @click="startSlideshow" v-if="!slideshowActive">
+              <v-icon x-large>mdi-play</v-icon>
+            </v-btn>
+            <v-btn color="secondary" elevation="1" fab icon outlined large @click="stopSlideshow" v-else>
+              <v-icon x-large>mdi-stop</v-icon>
+            </v-btn>
           </v-col>
         </v-row>
-        <v-row
-          class="mb-3 mt-3"
-          align="center"
-          justify="center"
-          >
-          タスク内容：{{ task }}
-          <v-btn v-on:click="addTask"
-               fab
-               dark
-               small               
-               color="indigo"
-               >
-                 <v-icon dark>
-                   mdi-plus
-                 </v-icon>
-               </v-btn>
-        </v-row>
-        <v-row
-          class="mb-3 mt-3"
-          justify="center"
-          > 
-          <v-btn v-on:click="clearAll"
-                  color="primary"
-  elevation="2"
-  large
-                 rounded
-                 >全てのToDoをクリア</v-btn>
-  
-  
-  
+      </section>
+    </v-app>
+  </div>  
 
-        </v-row>
-        <v-row 
-          class="mb-3 mt-3"
-          justify="center"
-          v-for="todo in todoList">
-          {{ todo }}
-        </v-row>
-      </v-container>
-    </v-content>
-  </v-app>
-</div>
+</body>
+</html>
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js'></script><script  src="./script.js"></script>

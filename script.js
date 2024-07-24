@@ -1,23 +1,63 @@
-const app = new Vue({
-  el: '#app', // Vueが管理する一番外側のDOM要素
- vuetify: new Vuetify(),
-  data: {
-    // Vue内部で使いたい変数は全てこの中に定義する
-    task: '',
-    todoList: [], // これは配列
-  },
-  methods: {
-    // 関数はここ
-    addTask: function() {
-      console.log('次のタスクが追加されました：', this.task);
-      // 配列の先頭に現在のタスク内容を追加する（最後尾の場合はpush）
-      this.todoList.unshift(this.task);
-      console.log('現在のToDo一覧：', this.todoList);
-    },
-    // 以下を追加、関数名はなんでもよい
-    clearAll: function() {
-      this.todoList = [];
-      console.log('全てのToDoが消去されました');
-    },
-  },
-});
+const vuetify = new Vuetify({
+      theme: {
+        themes: {
+          light: {
+            secondary: '#00BCD4', // 水色に設定
+          },
+        },
+      },
+      icons: {
+        iconfont: 'mdi', // default - only for display purposes
+      },
+    });
+
+    let app = new Vue({
+      el:'#app',
+      vuetify,
+      data(){
+        return {
+          active: 0,
+          slideshowActive: false,
+          images: [
+            {id:0, img:'images/image007.jpg'},
+            {id:1, img:'images/image008.jpg'},
+            {id:2, img:'images/image009.jpg'},
+            {id:3, img:'images/image010.jpg'},
+            {id:4, img:'images/image011.jpg'},
+            {id:5, img:'images/image012.jpg'},
+          ],
+          slideshowTimer: null
+        }
+      },
+      methods:{
+        current(id){
+          this.active = id
+        },
+        prev(){
+          if(this.active <= 0){
+            this.active = this.images.length - 1
+          } else {
+            this.active--
+          }
+        },
+        next(){
+          if(this.active >= this.images.length - 1){
+            this.active = 0
+          } else {
+            this.active++
+          }
+        },
+        startSlideshow(){
+          this.slideshowActive = true;
+          this.slideshowTimer = setInterval(() => {
+            if (this.slideshowActive) {
+              this.next();
+            }
+          }, 4000);
+        },
+        stopSlideshow(){
+          this.slideshowActive = false;
+          clearInterval(this.slideshowTimer);
+        }
+      }
+    });
