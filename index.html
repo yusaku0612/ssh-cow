@@ -2,10 +2,9 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - A Pen by yusaku0612</title>
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
-<link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'><link rel="stylesheet" href="./style.css">
+  <title>CodePen - catapp</title>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.5.10/dist/vuetify.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css'><link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
@@ -20,7 +19,7 @@
             <div class="carousel__main-image"
                 :key="images[active].id" 
                 v-show="active === images[active].id">
-              <img :src="images[active].img">
+              <img :src="images[active].img" alt="Carousel Image">
             </div>
           </transition>
         </div>
@@ -31,7 +30,7 @@
             :key="image.id"
             :class="{current: active === image.id}"
             @click="current(image.id)">
-          <img :src="image.img">
+            <img :src="image.img" alt="Thumbnail Image">
           </li>
         </ul>
         <v-row class="justify-center mt-3">
@@ -46,13 +45,12 @@
         </v-row>
       </section>
     </v-app>
-  </div>  
-
+  </div>
 </body>
 </html>
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js'></script><script  src="./script.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vuetify@2.5.10/dist/vuetify.min.js'></script><script  src="./script.js"></script>
 
 </body>
 </html>

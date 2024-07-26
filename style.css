@@ -1,0 +1,85 @@
+.carousel {
+  width: 840px;
+  height: auto; /* 高さを自動調整 */
+  margin: 0 auto;
+  position: relative;
+}
+.carousel__main {
+  width: 640px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* 縦のスペースを追加 */
+}
+.carousel__main-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carousel__main img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.carousel__prev {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  cursor: pointer;
+  color: lightgray;
+  transform: translateY(-50%);
+}
+.carousel__prev:hover {
+  transition-duration: .2s;
+  transform: translateX(-10px) translateY(-50%);
+}
+.carousel__next {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  cursor: pointer;
+  color: lightgray;
+  transform: translateY(-50%);
+}
+.carousel__next:hover {
+  transition-duration: .2s;
+  transform: translateX(10px) translateY(-50%);
+}
+.carousel__thumbnails {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 10px; /* ここで縦の隙間を追加 */
+}
+.carousel__thumbnails li {
+  cursor: pointer;
+  opacity: 0.4;
+}
+.carousel__thumbnails li:hover {
+  opacity: 1;
+}
+.carousel__thumbnails li.current {
+  opacity: 1;
+}
+.carousel__thumbnails img {
+  width: 80px;
+}
+.active-enter {
+  opacity: 0;
+}
+.active-enter-to {
+  opacity: 1;
+}
+.active-enter-active {
+  transition: opacity .5s;
+}
+.active-leave {
+  opacity: 1;
+}
+.active-leave-to {
+  opacity: 0;
+}
+.active-leave-active {
+  transition: opacity .5s;
+}
